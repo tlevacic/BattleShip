@@ -1,6 +1,6 @@
 # Main Use Case
 
-**Actors**: 2 players playing each against another
+**Actors**: 2 players playing one against another
 1.	Each player draws two grids with 10 x 10 squares (number of squares may vary depending on the version of game) and marks rows with numbers 1 - 10 and columns with letters A - J. Each square on the grid will be identified by a letter and number combination. For example, square "A-1" is the square in the left top corner of the grid, "J-1" is the square in the top right corner. On one grid players will place their fleets (consisting of a number of ships with different lengths) and on the other grid they will record results of shooting oponent's fleet. The grid with fleet must remain hidden from the opponent all through the game.
 2.	Each player selects a sequence of 5 horizontal or vertical squares on the first grid where longest ship will be placed. Player marks selected squares to identify the ship.
 3.	Player repeats step 2 for other ships consisting of horizontal or vertical sequence of 4 squares (2 ships), 3 squares (3 ships), 2 squares (4 ships) taking care that squares belonging to different ships must not overlap or be adjacent.
