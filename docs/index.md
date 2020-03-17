@@ -1,3 +1,3 @@
 # Table of Contents
 
-* [Description](description)
+* [Description](description.md)
