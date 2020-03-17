@@ -2,4 +2,4 @@
 
 Simulation of the Battleship game intended to allow a player to play against computer.
 
-[Wiki](../../wiki/Home)
+[Wiki pages](../../wiki/Home)
