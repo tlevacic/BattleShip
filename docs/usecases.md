@@ -7,9 +7,9 @@ Actors: 2 players playing each against another
 4.	After both players have placed their ships, game starts by one of players randomly selected.
 5.	First player selects a square on the oponent's grid he is targeting and asks the oponent for the result of shooting that square by prononcing the square identifier, e.g. "B-4".
 6.	Oponent checks on his grid with fleet if the square is occupied by a ship and answers:
-   a.	"Missed" if square doesn't contain a ship,
-   b.	"Hit" if there is a ship on that square or
-   c.	"Sunk" if the square is the last hit square belonging to a ship.
+    * "Missed" if square doesn't contain a ship,
+    * "Hit" if there is a ship on that square or
+    * "Sunk" if the square is the last hit square belonging to a ship.
 7.	First player records the shooting result on his second grid.
 8.	Players exchange their roles and repeat steps 5-7.
 9.	Players repeat steps 5-8 until all ships in one of player's fleet are sunk.
