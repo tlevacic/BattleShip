@@ -13,5 +13,5 @@
 7.	First player records the shooting result on his second grid.
 8.	Players exchange their roles and repeat steps 5-7.
 9.	Players repeat steps 5-8 until all ships in one of player's fleet are sunk.
-10.	Winner is the player who still has a ship that is not sunk
+10.	Winner is the player whose fleet has at least one ship that is not sunk.
 
