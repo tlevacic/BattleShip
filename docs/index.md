@@ -16,4 +16,4 @@ Strategy game with 2 players playing one against another
 10.	Winner is the player whose fleet has at least one ship not sunk.
 
 
-[[https://github.com/vsite-oom/Battleship/docs/domain_model.png|alt=octocat]]
+[[domain_model.png|alt=octocat]]
