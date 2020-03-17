@@ -15,3 +15,5 @@ Strategy game with 2 players playing one against another
 9.	Players repeat steps 5-8 until all ships in one of player's fleet are sunk.
 10.	Winner is the player whose fleet has at least one ship not sunk.
 
+
+[[https://github.com/vsite-oom/Battleship/docs/domain_model.png|alt=octocat]]
