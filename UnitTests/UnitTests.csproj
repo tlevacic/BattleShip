@@ -52,6 +52,7 @@
     <Compile Include="TestSquare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestGrid.cs" />
+    <Compile Include="TestLimitedQueue.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
