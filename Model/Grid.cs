@@ -6,73 +6,57 @@ using System.Threading.Tasks;
 
 namespace Vsite.Oom.Battleship.Model
 {
-    using Placement=IEnumerable<Square>;
-
+    using Placement = IEnumerable<Square>;
     public class Grid
     {
-        public Grid(int rows, int columns)
+        public Grid(int rows, int cols)
         {
             Rows = rows;
-            Columns = columns;
-            squares = new Square[Rows, Columns];
+            Cols = cols;
+            squares = new Square[Rows, Cols];
             for (int r = 0; r < Rows; ++r)
             {
-                for (int c = 0; c < Columns; ++c)
-                {
+                for (int c = 0; c < Cols; ++c)
                     squares[r, c] = new Square(r, c);
-                }
             }
         }
-        public IEnumerable<Placement> GetAvailableVerticalPlacements(int length)
-        {
-            return new List<Placement>();
-        }
-
-
-        public IEnumerable<Placement> GetAvailablePlacements(int length)
+        public IEnumerable<Placement> GetAvailablePlacments(int length)
         {
             if (length != 1)
-            {
-                List<List<Square>> result = new List<List<Square>>();
-                for (int r = 0; r < Rows; ++r)
-                {
-                    for (int c = 0; c < Columns; ++c)
-                    {
-                        if (squares[r, c] != null)
-                            result.Add(new List<Square> { squares[r, c] });   
-  
-                    }
-                }
-                return result;
-            }
-            return GetAvailableHorizontalPlacements(length).Concat(GetAvailableVerticalPlacements(length));
-        }
+                return GetAvailableHorizontalPlacements(length).Concat(GetAvailableVerticalPlacements(length));
 
+            List<List<Square>> result = new List<List<Square>>();
+            for (int r = 0; r < Rows; ++r)
+            {
+                for (int c = 0; c < Cols; ++c)
+                    if (squares[r, c] != null)
+                        result.Add(new List<Square> { squares[r, c] });
+            }
+            return result;
+
+
+        }
         public void EliminateSquares(Placement toEliminate)
         {
-            foreach(var square in toEliminate)
-            {
+            foreach (var square in toEliminate)
                 squares[square.Row, square.Col] = null;
-            }
-        }
 
+
+        }
         private IEnumerable<Placement> GetAvailableHorizontalPlacements(int length)
         {
             var result = new List<List<Square>>();
-            for(int r = 0; r < Rows; ++r)
+            for (int r = 0; r < Rows; ++r)
             {
                 LimitedQueue<Square> passed = new LimitedQueue<Square>(length);
-                for(int c = 0; c < Columns; ++c)
+                for (int c = 0; c < Cols; ++c)
                 {
                     if (squares[r, c] != null)
-                    {
                         passed.Enqueue(squares[r, c]);
-                    }
                     else
                         passed.Clear();
                     if (passed.Count == length)
                     {
-                        
                         result.Add(passed.ToList());
                     }
                 }
@@ -80,9 +64,39 @@ namespace Vsite.Oom.Battleship.Model
 
             return result;
         }
+        private IEnumerable<Placement> GetAvailableVerticalPlacements(int length)
+        {
+            var result = new List<List<Square>>();
+            for (int c = 0; c < Cols; ++c)
+            {
+                int counter = 0;
+                for (int r = 0; r < Rows; ++r)
+                {
+                    if (squares[r, c] != null)
+                    {
+                        ++counter;
+                    }
+                    else
+                    {
+                        counter = 0;
+                    }
+                    if (counter >= length)
+                    {
+                        List<Square> seq = new List<Square>();
+                        for (int first = r - length + 1; first <= r; ++first)
+                        {
+                            seq.Add(squares[first, c]);
+                        }
+                        result.Add(seq);
+                    }
+                }
+            }
+            return result;
+        }
+
 
         public readonly int Rows;
-        public readonly int Columns;
+        public readonly int Cols;
 
         private Square[,] squares;
     }

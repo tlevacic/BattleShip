@@ -6,14 +6,31 @@ using System.Threading.Tasks;
 
 namespace Vsite.Oom.Battleship.Model
 {
-    public class Square
+    public class Square : IEquatable<Square>
     {
-        public readonly int Row, Col;
-
         public Square(int row, int col)
         {
             Row = row;
             Col = col;
+        }
+        public readonly int Row;
+        public readonly int Col;
+
+        public bool Equals(Square other)
+        {
+            return Row == other.Row && Col == other.Col;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (obj.GetType() != GetType())
+                return false;
+            return Equals((Square)obj);
+        }
+        public override int GetHashCode()
+        {
+            return Row ^ Col;
         }
     }
 }
