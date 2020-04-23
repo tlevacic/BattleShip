@@ -12,7 +12,9 @@ namespace Vsite.Oom.Battleship.Model
         {
             Row = row;
             Col = col;
+            Hit = false;
         }
+        public bool Hit { get; set; }
         public readonly int Row;
         public readonly int Col;
 
