@@ -23,6 +23,7 @@ namespace Vsite.Oom.Battleship.Model.UnitTests
             Assert.AreEqual(2, fleet.Ships.Count());
         }
 
+
         [TestMethod]
         public void HitShipReturnsResultOfShooting()
         {
