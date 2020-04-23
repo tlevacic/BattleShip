@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Vsite.Oom.Battleship.Model.UnitTests
 {
@@ -6,7 +7,7 @@ namespace Vsite.Oom.Battleship.Model.UnitTests
     public class TestSquare
     {
         [TestMethod]
-        public void SquareConstructorCreatesSquareWithGivenPosition()
+        public void SquareConstructorCreateSquareWithGivenPosition()
         {
             Square s = new Square(1, 8);
             Assert.AreEqual(1, s.Row);

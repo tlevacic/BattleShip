@@ -53,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestGrid.cs" />
     <Compile Include="TestLimitedQueue.cs" />
+    <Compile Include="TestFleet.cs" />
+    <Compile Include="TestShip.cs" />
+    <Compile Include="TestShipwright.cs" />
+    <Compile Include="TestSquareTerminator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

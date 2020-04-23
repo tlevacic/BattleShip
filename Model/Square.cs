@@ -41,7 +41,7 @@ namespace Vsite.Oom.Battleship.Model
         }
         public static bool operator!=(Square lhs, Square rhs)
         {
-            return !(lhs, rhs);
+            return !(lhs == rhs);
         }
 
     }
