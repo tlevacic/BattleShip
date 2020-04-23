@@ -18,6 +18,8 @@ namespace Vsite.Oom.Battleship.Model
 
         public bool Equals(Square other)
         {
+            if (other == null)
+                return false;
             return Row == other.Row && Col == other.Col;
         }
         public override bool Equals(object obj)
@@ -32,5 +34,15 @@ namespace Vsite.Oom.Battleship.Model
         {
             return Row ^ Col;
         }
+
+        public static bool operator==(Square lhs, Square rhs)
+        {
+            return Equals(lhs, rhs);
+        }
+        public static bool operator!=(Square lhs, Square rhs)
+        {
+            return !(lhs, rhs);
+        }
+
     }
 }
