@@ -13,5 +13,12 @@ namespace Vsite.Oom.Battleship.Model.UnitTests
             Assert.AreEqual(1, s.Row);
             Assert.AreEqual(8, s.Col);
         }
+
+        [TestMethod]
+        public void WhenShipIsSunkenAllSquaresAreMarkedSunken()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
