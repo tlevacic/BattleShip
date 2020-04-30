@@ -51,6 +51,7 @@
     <Compile Include="Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SquareTerminator.cs" />
+    <Compile Include="SquareTerminatorFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
