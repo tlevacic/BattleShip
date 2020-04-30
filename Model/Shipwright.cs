@@ -34,9 +34,8 @@ namespace Vsite.Oom.Battleship.Model
             List<int> lengths = new List<int>(shipLengths.OrderByDescending(x => x));
 
             Grid grid = new Grid(rows, cols);
-            SquareTerminator terminator = new SquareTerminator(grid);
+            SquareTerminator terminator = new SquareTerminator(rows,cols);
             Fleet fleet = new Fleet();
-            Random random = new Random();
             while (lengths.Count > 0)
             {
                 var placements = grid.GetAvailablePlacments(lengths[0]);
@@ -53,7 +52,7 @@ namespace Vsite.Oom.Battleship.Model
             }
             return fleet;
         }
-
+        Random random = new Random();
         private readonly int rows;
         private readonly int cols;
     }
