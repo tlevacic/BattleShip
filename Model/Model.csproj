@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Fleet.cs" />
     <Compile Include="Grid.cs" />
+    <Compile Include="Gunner.cs" />
     <Compile Include="ISquareTerminator.cs" />
     <Compile Include="LimitedQueue.cs" />
     <Compile Include="RulesSingelton.cs" />
