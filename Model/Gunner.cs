@@ -114,6 +114,7 @@ namespace Vsite.Oom.Battleship.Model
                 return l.ElementAt(0).First();
 
             //TODO: inprove selection so that only largest list are taken as candidates.
+            //l.OrderByDescending(ls => ls.Count());
             int index = random.Next(0, l.Count());
             return l.ElementAt(index).First();
         }

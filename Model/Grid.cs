@@ -73,7 +73,7 @@ namespace Vsite.Oom.Battleship.Model
                 case Direction.Down:
                     ++row;
                     deltaRow = +1;
-                    maxCount = Rows - column;
+                    maxCount = Rows - row;
                     break;
 
                 case Direction.Left:
