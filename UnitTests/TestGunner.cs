@@ -40,21 +40,13 @@ namespace Vsite.Oom.Battleship.Model.UnitTests
         [TestMethod]
         public void ShootingTacticsChangesFromSurroundingToLinegAfterSecondSquareIsHit()
         {
-            int[] shipLenghts = new int[] { 1, 2, 3 };
-            Gunner g = new Gunner(6, 6, shipLenghts);
+            int[] shipLengths = new int[] { 1, 2, 3 };
+            Gunner g = new Gunner(6, 6, shipLengths);
             Assert.AreEqual(ShootingTactics.Random, g.ShootingTactics);
 
             g.NextTarget();
             g.ProcessHitResult(HitResult.Hit);
             Assert.AreEqual(ShootingTactics.Surrounding, g.ShootingTactics);
-
-            g.NextTarget();
-            g.ProcessHitResult(HitResult.Hit);
-            Assert.AreEqual(ShootingTactics.Inline, g.ShootingTactics);
-
-            g.NextTarget();
-            g.ProcessHitResult(HitResult.Missed);
-            Assert.AreEqual(ShootingTactics.Inline, g.ShootingTactics);
 
             g.NextTarget();
             g.ProcessHitResult(HitResult.Hit);
