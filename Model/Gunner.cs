@@ -112,13 +112,9 @@ namespace Vsite.Oom.Battleship.Model
         private Square SelectInline()
         {
             var l= evidenceGrid.GetSquaresInline(squaresHit);
-            if (l.Count() == 1)
-                return l.ElementAt(0).First();
-
-            //TODO: inprove selection so that only largest list are taken as candidates.
-            //l.OrderByDescending(ls => ls.Count());
-            int index = random.Next(0, l.Count());
-            return l.ElementAt(index).First();
+            if (l.Count() > 1)
+                l = l.OrderByDescending(ls => ls.Count()).ToList();
+            return l.ElementAt(0).First();
         }
 
         private Square SelectFromArround()
@@ -130,11 +126,9 @@ namespace Vsite.Oom.Battleship.Model
                 if (l.Count() > 0)
                     arround.Add(l);
             }
-            if (arround.Count == 1)
-                return arround[0].First();
-            //TODO: inprove selection so that only largest list are taken as candidates.
-            int index = random.Next(0,arround.Count());
-            return arround[index].First();
+            if (arround.Count > 1)
+                arround = arround.OrderByDescending(ls => ls.Count()).ToList();
+            return arround[0].First();
         }
 
 
