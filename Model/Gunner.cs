@@ -24,11 +24,12 @@ namespace Vsite.Oom.Battleship.Model
             shipsToShoot=new List<int>(shipLengths.OrderByDescending(l => l));
             ShootingTactics = ShootingTactics.Random;
             squareTerminator = new SquareTerminator(rows, cols);
+            targetSelect = new RandomShooting(evidenceGrid);
 
         }
         public Square NextTarget()
         {
-            lastTarget = SelectTarget();
+            lastTarget = targetSelect.NextTarget(shipsToShoot[0]);
             return lastTarget;
         }
 
@@ -63,6 +64,7 @@ namespace Vsite.Oom.Battleship.Model
             if (hitResult == HitResult.Sunken)
             {
                 ShootingTactics = ShootingTactics.Random;
+                targetSelect = new RandomShooting(evidenceGrid);
                 return;
             }
             if (hitResult == HitResult.Hit)
@@ -70,10 +72,12 @@ namespace Vsite.Oom.Battleship.Model
                 switch (ShootingTactics)
                 {
                     case ShootingTactics.Random:
+                        targetSelect = new SurroundShooting(evidenceGrid, squaresHit);
                         ShootingTactics = ShootingTactics.Surrounding;
                         return;
                     case ShootingTactics.Surrounding:
                         ShootingTactics = ShootingTactics.Inline;
+                        targetSelect = new InlineShooting(evidenceGrid, squaresHit);
                         return;
                     case ShootingTactics.Inline:
                         return;
@@ -82,22 +86,6 @@ namespace Vsite.Oom.Battleship.Model
            
         }
 
-        private Square SelectTarget()
-        {
-            switch (ShootingTactics)
-            {
-                case ShootingTactics.Random:
-                    return SelectRandomly();
-                case ShootingTactics.Surrounding:
-                    return SelectFromArround();
-                case ShootingTactics.Inline:
-                    return SelectInline();
-                default:
-                    Debug.Assert(false);
-                    return null;
-                        
-                    }
-        }
 
         private Square SelectRandomly()
         {
@@ -152,14 +140,13 @@ namespace Vsite.Oom.Battleship.Model
             return longest.ElementAt(index).First();
         }
 
-
-
         private Square lastTarget;
         private ISquareTerminator squareTerminator;
         private Grid evidenceGrid;
         private SortedSquares squaresHit = new SortedSquares();
         private Random random = new Random();
         private List<int> shipsToShoot;
+        private ITargetSelect targetSelect;
         public ShootingTactics ShootingTactics { get; private set; }
     }
 }
