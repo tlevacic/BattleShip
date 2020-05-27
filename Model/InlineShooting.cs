@@ -8,10 +8,11 @@ namespace Vsite.Oom.Battleship.Model
 {
     public class InlineShooting : ITargetSelect
     {
-        public InlineShooting(Grid evidenceGrid, SortedSquares squaresHit)
+        public InlineShooting(Grid evidenceGrid, SortedSquares squaresHit, List<int> shipsToShoot)
         {
             this.squaresHit = squaresHit;
             this.evidenceGrid = evidenceGrid;
+            this.shipsToShoot = shipsToShoot;
         }
 
         public Square NextTarget(int shipLength)
@@ -21,6 +22,7 @@ namespace Vsite.Oom.Battleship.Model
                 return l.ElementAt(0).First();
             var ordered = l.OrderByDescending(ls => ls.Count());
             int maxLen = ordered.First().Count();
+            int shipLength = shipsToShoot[0];
             if (maxLen >  shipLength - squaresHit.Count())
                 maxLen =  shipLength - squaresHit.Count();
             var longest = ordered.Where(ls => ls.Count() >= maxLen);
@@ -31,5 +33,6 @@ namespace Vsite.Oom.Battleship.Model
         private readonly SortedSquares squaresHit;
         private Random random = new Random();
         private readonly Grid evidenceGrid;
+        private readonly List<int> shipsToShoot;
     }
 }
