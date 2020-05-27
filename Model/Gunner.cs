@@ -24,12 +24,13 @@ namespace Vsite.Oom.Battleship.Model
             shipsToShoot=new List<int>(shipLengths.OrderByDescending(l => l));
             ShootingTactics = ShootingTactics.Random;
             squareTerminator = new SquareTerminator(rows, cols);
-            targetSelect = new RandomShooting(evidenceGrid,shipsToShoot);
+            shootingTacticsFactory= new ShootingTacticsFactory(evidenceGrid,squaresHit,shipsToShoot);
+            targetSelect = shootingTacticsFactory.GetTactics(ShootingTactics.Random);
 
         }
         public Square NextTarget()
         {
-            lastTarget = targetSelect.NextTarget(shipsToShoot[0]);
+            lastTarget = targetSelect.NextTarget();
             return lastTarget;
         }
 
@@ -64,26 +65,23 @@ namespace Vsite.Oom.Battleship.Model
             if (hitResult == HitResult.Sunken)
             {
                 ShootingTactics = ShootingTactics.Random;
-                targetSelect = new RandomShooting(evidenceGrid, shipsToShoot);
-                return;
             }
             if (hitResult == HitResult.Hit)
             {
                 switch (ShootingTactics)
                 {
                     case ShootingTactics.Random:
-                        targetSelect = new SurroundShooting(evidenceGrid, squaresHit, shipsToShoot);
                         ShootingTactics = ShootingTactics.Surrounding;
-                        return;
+                        break;
                     case ShootingTactics.Surrounding:
                         ShootingTactics = ShootingTactics.Inline;
-                        targetSelect = new InlineShooting(evidenceGrid, squaresHit, shipsToShoot);
-                        return;
+                        break;
                     case ShootingTactics.Inline:
                         return;
                 }
             }
-           
+            targetSelect = shootingTacticsFactory.GetTactics(ShootingTactics);
+
         }
 
 
@@ -148,5 +146,6 @@ namespace Vsite.Oom.Battleship.Model
         private List<int> shipsToShoot;
         private ITargetSelect targetSelect;
         public ShootingTactics ShootingTactics { get; private set; }
+        private ShootingTacticsFactory shootingTacticsFactory;
     }
 }

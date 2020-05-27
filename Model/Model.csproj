@@ -52,6 +52,7 @@
     <Compile Include="RulesSingelton.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="Shipwright.cs" />
+    <Compile Include="ShootingTacticsFactory.cs" />
     <Compile Include="SortedSquares.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
