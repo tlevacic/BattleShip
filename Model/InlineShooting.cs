@@ -15,7 +15,7 @@ namespace Vsite.Oom.Battleship.Model
             this.shipsToShoot = shipsToShoot;
         }
 
-        public Square NextTarget()
+        public Square NextTarget(bool secondMethod)
         {
             var l = evidenceGrid.GetSquaresInline(squaresHit);
             if (l.Count() == 1)

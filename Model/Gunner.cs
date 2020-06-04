@@ -28,9 +28,9 @@ namespace Vsite.Oom.Battleship.Model
             targetSelect = shootingTacticsFactory.GetTactics(ShootingTactics.Random);
 
         }
-        public Square NextTarget()
+        public Square NextTarget(bool secondMethod)
         {
-            lastTarget = targetSelect.NextTarget();
+            lastTarget = targetSelect.NextTarget(secondMethod);
             return lastTarget;
         }
 

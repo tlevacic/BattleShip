@@ -14,10 +14,18 @@ namespace Vsite.Oom.Battleship.Model
             this.shipsToShoot = shipsToShoot;
         }
 
-        public Square NextTarget()
+        public Square NextTarget(bool secondMethod)
         {
             int shipLength = shipsToShoot[0];
-            var placements = evidenceGrid.GetAvailablePlacments(shipLength);
+            IEnumerable<IEnumerable<Square>> placements;
+            if (secondMethod)
+            {
+                 placements = evidenceGrid.GetAvailablePlacments(1);
+            }
+            else
+            {
+                placements = evidenceGrid.GetAvailablePlacments(shipLength);
+            }
             // create simple array of sqaures from arrays of arrays
             var allCandidates = placements.SelectMany(seq => seq);
             // create groups with individual squares

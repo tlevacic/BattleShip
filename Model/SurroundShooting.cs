@@ -15,7 +15,7 @@ namespace Vsite.Oom.Battleship.Model
             this.shipsToShoot = shipsToShoot;
         }
 
-        public Square NextTarget()
+        public Square NextTarget(bool secondMethod)
         {
             List<IEnumerable<Square>> arround = new List<IEnumerable<Square>>();
             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
