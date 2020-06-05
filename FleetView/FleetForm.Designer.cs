@@ -31,6 +31,7 @@
             this.buttonDraw = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.playButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonDraw
@@ -42,7 +43,7 @@
             this.buttonDraw.TabIndex = 1;
             this.buttonDraw.Text = "&Draw";
             this.buttonDraw.UseVisualStyleBackColor = true;
-            this.buttonDraw.Click += new System.EventHandler(this.drawButton);
+            this.buttonDraw.Click += new System.EventHandler(this.DrawButton);
             // 
             // label1
             // 
@@ -66,12 +67,24 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "PC Grid";
             // 
+            // playButton
+            // 
+            this.playButton.Enabled = false;
+            this.playButton.Location = new System.Drawing.Point(213, 482);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(137, 30);
+            this.playButton.TabIndex = 5;
+            this.playButton.Text = "Play";
+            this.playButton.UseVisualStyleBackColor = true;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            // 
             // FleetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(1377, 584);
+            this.Controls.Add(this.playButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonDraw);
@@ -86,6 +99,7 @@
         private System.Windows.Forms.Button buttonDraw;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button playButton;
     }
 }
 
