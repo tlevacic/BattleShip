@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.buttonDraw = new System.Windows.Forms.Button();
-            this.fleetgrid = new FleetView.fleetGrid(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.fleetGridPC = new FleetView.fleetGrid(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -47,15 +44,6 @@
             this.buttonDraw.UseVisualStyleBackColor = true;
             this.buttonDraw.Click += new System.EventHandler(this.drawButton);
             // 
-            // fleetgrid
-            // 
-            this.fleetgrid.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.fleetgrid.Location = new System.Drawing.Point(38, 88);
-            this.fleetgrid.Name = "fleetgrid";
-            this.fleetgrid.Size = new System.Drawing.Size(394, 366);
-            this.fleetgrid.TabIndex = 0;
-            this.fleetgrid.Click += new System.EventHandler(this.fleetgrid_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -66,14 +54,6 @@
             this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Your Grid";
-            // 
-            // fleetGridPC
-            // 
-            this.fleetGridPC.Location = new System.Drawing.Point(591, 88);
-            this.fleetGridPC.Name = "fleetGridPC";
-            this.fleetGridPC.Size = new System.Drawing.Size(394, 366);
-            this.fleetGridPC.TabIndex = 3;
-            this.fleetGridPC.Text = "fleetGrid1";
             // 
             // label2
             // 
@@ -93,10 +73,8 @@
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(1377, 584);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.fleetGridPC);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonDraw);
-            this.Controls.Add(this.fleetgrid);
             this.Name = "FleetForm";
             this.Text = "Fleet";
             this.ResumeLayout(false);
@@ -105,10 +83,8 @@
         }
 
         #endregion
-        private fleetGrid fleetgrid;
         private System.Windows.Forms.Button buttonDraw;
         private System.Windows.Forms.Label label1;
-        private fleetGrid fleetGridPC;
         private System.Windows.Forms.Label label2;
     }
 }
