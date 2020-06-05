@@ -26,11 +26,17 @@ namespace FleetView
         public FleetForm()
         {
             InitializeComponent();
-            DrawPanel(userPanel,47);
-            DrawPanel(pcPanel,600);
+            DrawPanel(userPanel,187);
+            DrawPanel(pcPanel,660);
             whoPlays = Turn.User;
+            playerTurnButton.BackColor = Color.LawnGreen;
+            pcTurnButton.BackColor = Color.Red;
             EnableButtons(userPanel,false);
             EnableButtons(pcPanel, false);
+        }
+        private void FleetForm_Load(object sender, EventArgs e)
+        {
+            this.Cursor = new Cursor("../../Cursor/cursor.ico");
         }
         private void DrawPanel(GridButton[,] panel,int left)
         {
@@ -43,7 +49,7 @@ namespace FleetView
                     panel[i, j].j = j;
                     panel[i, j].FlatStyle = FlatStyle.Flat;
                     panel[i, j].BackColor = Color.FromArgb(232, 232, 232);
-                    panel[i, j].Location = new System.Drawing.Point(left + i * 40, 60 + j * 40);
+                    panel[i, j].Location = new System.Drawing.Point(left + i * 40, 120 + j * 40);
                     panel[i, j].Size = new System.Drawing.Size(40, 40);
                     panel[i, j].TabStop = false;
                     panel[i, j].Click += ClickSquareEvent;
@@ -61,7 +67,7 @@ namespace FleetView
                     if(i!=0)
                         gridMarks[i, j].Text = letter.ToString();
                     gridMarks[i, j].BackColor = Color.FromArgb(232, 232, 232);
-                    gridMarks[i, j].Location = new System.Drawing.Point(left + i * 40 - 40, 60 + j * 40- 40);
+                    gridMarks[i, j].Location = new System.Drawing.Point(left + i * 40 - 40, 120 + j * 40- 40);
                     gridMarks[i, j].Size = new System.Drawing.Size(40, 40);
                     gridMarks[i, j].TabStop = false;
                     gridMarks[i, j].FlatStyle = FlatStyle.Flat;
@@ -77,6 +83,8 @@ namespace FleetView
         {
             running = false;
             whoPlays = Turn.User;
+            playerTurnButton.BackColor = Color.LawnGreen;
+            pcTurnButton.BackColor = Color.Red;
             playButton.Enabled = true;
             ResetButtons(userPanel);
             ResetButtons(pcPanel);
@@ -212,7 +220,9 @@ namespace FleetView
                         {
                             button.BackColor = Color.Red;
                             whoPlays = Turn.PC;
-                            break;
+                        playerTurnButton.BackColor = Color.Red;
+                        pcTurnButton.BackColor = Color.LawnGreen;
+                        break;
                         }
                     case HitResult.Sunken:
                         {
@@ -242,6 +252,8 @@ namespace FleetView
                     {
                         userPanel[square.Row, square.Col].BackColor = Color.Red;
                         whoPlays = Turn.User;
+                        playerTurnButton.BackColor = Color.LawnGreen;
+                        pcTurnButton.BackColor = Color.Red;
                         break;
                     }
                 case HitResult.Sunken:
@@ -269,10 +281,5 @@ namespace FleetView
         private int[] sizeOfShip = new int[] { 5, 4, 4, 3, 3, 3, 2, 2, 2, 2 };
         private Turn whoPlays;
         private bool running = false;
-
-        private void FleetForm_Load(object sender, EventArgs e)
-        {
-            this.Cursor = new Cursor("../../Cursor/cursor.ico");
-        }
     }
 }
