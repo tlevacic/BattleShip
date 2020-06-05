@@ -54,6 +54,7 @@
             this.two1pc = new System.Windows.Forms.Label();
             this.two2pc = new System.Windows.Forms.Label();
             this.two4pc = new System.Windows.Forms.Label();
+            this.winnerLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonDraw
@@ -346,12 +347,24 @@
             this.two4pc.TabIndex = 24;
             this.two4pc.Text = "2";
             // 
+            // winnerLabel
+            // 
+            this.winnerLabel.AutoSize = true;
+            this.winnerLabel.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winnerLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.winnerLabel.Location = new System.Drawing.Point(455, 24);
+            this.winnerLabel.Name = "winnerLabel";
+            this.winnerLabel.Size = new System.Drawing.Size(110, 23);
+            this.winnerLabel.TabIndex = 25;
+            this.winnerLabel.Text = "WINNER : ";
+            // 
             // FleetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(1203, 652);
+            this.Controls.Add(this.winnerLabel);
             this.Controls.Add(this.two4pc);
             this.Controls.Add(this.two2pc);
             this.Controls.Add(this.two1pc);
@@ -415,6 +428,7 @@
         private System.Windows.Forms.Label two1pc;
         private System.Windows.Forms.Label two2pc;
         private System.Windows.Forms.Label two4pc;
+        private System.Windows.Forms.Label winnerLabel;
     }
 }
 

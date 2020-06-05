@@ -164,6 +164,12 @@ namespace FleetView
                             }
                     }
                 }
+                var result = IsGameOver();
+                if(result != Winner.None)
+                {
+                    winnerLabel.Text = "WINNER : " + result.ToString();
+                    EnableButtons(pcPanel, false);
+                }
             }
         }
 
@@ -289,7 +295,7 @@ namespace FleetView
                 if (sunkedShip.length == i && sunkedShip.sunked == false)
                 {
                     sunkedShip.sunked = true;
-                    ChangeColorOfSunkedShipHooman(Color.IndianRed,sunkedShip.nameOfLabel);
+                    ChangeColorOfSunkedShipHooman(Color.Red,sunkedShip.nameOfLabel);
                     break;
                 }
             }
@@ -302,7 +308,7 @@ namespace FleetView
                 if (sunkedShip.length == i && sunkedShip.sunked == false)
                 {
                     sunkedShip.sunked = true;
-                    ChangeColorOfSunkedShipPc(Color.IndianRed,sunkedShip.nameOfLabel);
+                    ChangeColorOfSunkedShipPc(Color.Red,sunkedShip.nameOfLabel);
                     break;
                 }
             }
