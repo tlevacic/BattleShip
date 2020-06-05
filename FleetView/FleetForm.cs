@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Vsite.Oom.Battleship.Model;
 
 namespace FleetView
 {
-    public partial class FleetForm : Form { 
+    public partial class FleetForm : Form {
 
-        int numOfRows= 10;
-        int numOfCols = 10;
-        GridButton[,] userPanel = new GridButton[10, 10];
-        GridButton[,] pcPanel = new GridButton[10, 10];
+        private int numOfRows = 10;
+        private int numOfCols = 10;
+        private GridButton[,] userPanel = new GridButton[10, 10];
+        private GridButton[,] pcPanel = new GridButton[10, 10];
         private Fleet userFleet;
         private Fleet pcFleet;
+        private Gunner gunner;
+        private int[] sizeOfShip = new int[] { 5, 4, 4, 3, 3, 3, 2, 2, 2, 2 };
 
         public FleetForm()
         {
@@ -56,13 +59,42 @@ namespace FleetView
                 case HitResult.Missed:
                     {
                         button.BackColor = Color.Black;
+                        PcPlay();
                         break;
                     }
                 case HitResult.Sunken:
                     {
                         foreach (var sunkenSquare in pcFleet.Ships.Where(s => s.Squares.Contains(squareClicked)).SelectMany(s => s.Squares))
                             pcPanel[sunkenSquare.Row, sunkenSquare.Col].BackColor = Color.DarkMagenta;
-         
+                        break;
+                    }
+            }
+        }
+
+        private async Task PcPlay()
+        {
+            await Task.Delay(1000);
+            Square square=gunner.NextTarget();
+            HitResult result = userFleet.Hit(square);
+            gunner.ProcessHitResult(result);
+            switch (result)
+            {
+                case HitResult.Hit:
+                    {
+                        userPanel[square.Row, square.Col].BackColor = Color.Red;
+                        await PcPlay();
+                        break;
+                    }
+                case HitResult.Missed:
+                    {
+                        userPanel[square.Row, square.Col].BackColor = Color.Black;
+                        break;
+                    }
+                case HitResult.Sunken:
+                    {
+                        foreach (var sunkenSquare in userFleet.Ships.Where(s => s.Squares.Contains(square)).SelectMany(s => s.Squares))
+                            userPanel[sunkenSquare.Row, sunkenSquare.Col].BackColor = Color.DarkMagenta;
+                        await PcPlay();
                         break;
                     }
             }
@@ -78,13 +110,17 @@ namespace FleetView
             playButton.Enabled = true;
             ResetButtons(userPanel);
             ResetButtons(pcPanel);
-            int[] sizeOfShip = new int[] { 5, 4, 4, 3, 3, 3, 2, 2, 2, 2 };
 
             Shipwright ship = new Shipwright(numOfRows, numOfCols);
+            //User fleet
             var fleet = ship.CreateFleet(sizeOfShip);
+            //PC Fleet
             var fleetPc = ship.CreateFleet(sizeOfShip);
+            //Store that in class members
             userFleet = fleet;
             pcFleet = fleetPc;
+            //Create gunner
+            gunner = new Gunner(numOfRows, numOfCols, sizeOfShip);
 
             foreach (Ship ships in fleet.Ships)
             {
