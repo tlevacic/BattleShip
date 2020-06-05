@@ -13,6 +13,7 @@ namespace FleetView
         {
             InitializeComponent();
             fleetgrid.SetupGrid(numOfCols, numOfRows);
+            fleetGridPC.SetupGrid(numOfCols, numOfRows);
         }
         private void buttonQuitOnClick(object sender, EventArgs e)
         {
@@ -25,7 +26,14 @@ namespace FleetView
 
             Shipwright ship = new Shipwright(numOfRows, numOfCols);
             var fleet = ship.CreateFleet(sizeOfShip);
+            var fleetPc = ship.CreateFleet(sizeOfShip);
+            fleetGridPC.FleetSetup(fleetPc);
             fleetgrid.FleetSetup(fleet);
+        }
+
+        private void fleetgrid_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
