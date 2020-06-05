@@ -393,7 +393,7 @@
             this.Controls.Add(this.buttonDraw);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FleetForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Fleet";
             this.Load += new System.EventHandler(this.FleetForm_Load);
             this.ResumeLayout(false);
