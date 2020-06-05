@@ -83,13 +83,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(1377, 584);
+            this.ClientSize = new System.Drawing.Size(1196, 584);
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonDraw);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FleetForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fleet";
+            this.Load += new System.EventHandler(this.FleetForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
