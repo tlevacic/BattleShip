@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,6 +82,10 @@ namespace FleetView
         }
         private void DrawButton(object sender, EventArgs e)
         {
+        sunkedShipsHoomanFleet = new ShipsSunked[10] { new ShipsSunked(5, false, "five1h"), new ShipsSunked(4, false, "four1h"), new ShipsSunked(4, false, "four2h"), new ShipsSunked(3, false, "three1h"), new ShipsSunked(3, false, "three2h"), new ShipsSunked(3, false, "three3h"), new ShipsSunked(2, false, "two1h"), new ShipsSunked(2, false, "two2h"), new ShipsSunked(2, false, "two3h"), new ShipsSunked(2, false, "two4h") };
+        sunkedShipsPcFleet = new ShipsSunked[10] { new ShipsSunked(5, false, "five1pc"), new ShipsSunked(4, false, "four1pc"), new ShipsSunked(4, false, "four2pc"), new ShipsSunked(3, false, "three1pc"), new ShipsSunked(3, false, "three2pc"), new ShipsSunked(3, false, "three3pc"), new ShipsSunked(2, false, "two1pc"), new ShipsSunked(2, false, "two2pc"), new ShipsSunked(2, false, "two3pc"), new ShipsSunked(2, false, "two4pc") };
+            ChangeColorOfSunkedShipPc(Color.White,"");
+            ChangeColorOfSunkedShipHooman(Color.White,"");
             running = false;
             whoPlays = Turn.User;
             playerTurnButton.BackColor = Color.LawnGreen;
@@ -226,9 +231,14 @@ namespace FleetView
                         }
                     case HitResult.Sunken:
                         {
-                            foreach (var sunkenSquare in pcFleet.Ships.Where(s => s.Squares.Contains(squareClicked)).SelectMany(s => s.Squares))
-                                pcPanel[sunkenSquare.Row, sunkenSquare.Col].BackColor = Color.DarkMagenta;
-                            break;
+                        int i = 0;
+                        foreach (var sunkenSquare in pcFleet.Ships.Where(s => s.Squares.Contains(squareClicked)).SelectMany(s => s.Squares))
+                        {
+                            pcPanel[sunkenSquare.Row, sunkenSquare.Col].BackColor = Color.DarkMagenta;
+                            i++;
+                        }
+                        MarkLabelsOfPc(i);
+                        break;
                         }
                 }
             Play();
@@ -258,8 +268,13 @@ namespace FleetView
                     }
                 case HitResult.Sunken:
                     {
+                        int i = 0;
                         foreach (var sunkenSquare in userFleet.Ships.Where(s => s.Squares.Contains(square)).SelectMany(s => s.Squares))
+                        {
                             userPanel[sunkenSquare.Row, sunkenSquare.Col].BackColor = Color.DarkMagenta;
+                            i++;
+                        }
+                        MarkLabelsOfHooman(i);
                         await PcPlay();
                         break;
                     }
@@ -267,7 +282,134 @@ namespace FleetView
             Play();
         }
 
+        private void MarkLabelsOfHooman(int i)
+        {
+            foreach (var sunkedShip in sunkedShipsHoomanFleet)
+            {
+                if (sunkedShip.length == i && sunkedShip.sunked == false)
+                {
+                    sunkedShip.sunked = true;
+                    ChangeColorOfSunkedShipHooman(Color.IndianRed,sunkedShip.nameOfLabel);
+                    break;
+                }
+            }
+        }
 
+        private void MarkLabelsOfPc(int i)
+        {
+            foreach(var sunkedShip in sunkedShipsPcFleet)
+            {
+                if (sunkedShip.length == i && sunkedShip.sunked == false)
+                {
+                    sunkedShip.sunked = true;
+                    ChangeColorOfSunkedShipPc(Color.IndianRed,sunkedShip.nameOfLabel);
+                    break;
+                }
+            }
+        }
+
+        private void ChangeColorOfSunkedShipPc(Color color, string nameOfLabel)
+        {
+                    switch (nameOfLabel)
+                    {
+                        case "five1pc":
+                            five1pc.ForeColor = color;
+                            break;
+                        case "four1pc":
+                            four1pc.ForeColor = color;
+                            break;
+                        case "four2pc":
+                            four2pc.ForeColor = color;
+                            break;
+                        case "three1pc":
+                            three1pc.ForeColor = color;
+                            break;
+                        case "three2pc":
+                            three2pc.ForeColor = color;
+                            break;
+                        case "three3pc":
+                            three3pc.ForeColor = color;
+                            break;
+                        case "two1pc":
+                            two1pc.ForeColor = color;
+                            break;
+                        case "two2pc":
+                            two2pc.ForeColor = color;
+                            break;
+                        case "two3pc":
+                            two3pc.ForeColor = color;
+                            break;
+                        case "two4pc":
+                            two4pc.ForeColor = color;
+                            break;
+                default:
+                    {
+                        five1pc.ForeColor = color;
+                        four1pc.ForeColor = color;
+                        four2pc.ForeColor = color;
+                        three1pc.ForeColor = color;
+                        three2pc.ForeColor = color;
+                        three3pc.ForeColor = color;
+                        two1pc.ForeColor = color;
+                        two2pc.ForeColor = color;
+                        two3pc.ForeColor = color;
+                        two4pc.ForeColor = color;
+                        break;
+                    }
+            }
+        }
+
+        private void ChangeColorOfSunkedShipHooman(Color color,string nameOfLabel)
+        {
+                    switch (nameOfLabel)
+                    {
+                        case "five1h":
+                            five1h.ForeColor = color;
+                            break;
+                        case "four1h":
+                            four1h.ForeColor = color;
+                            break;
+                        case "four2h":
+                            four2h.ForeColor = color;
+                            break;
+                        case "three1h":
+                            three1h.ForeColor = color;
+                            break;
+                        case "three2h":
+                            three2h.ForeColor = color;
+                            break;
+                        case "three3h":
+                            three3h.ForeColor = color;
+                            break;
+                        case "two1h":
+                            two1h.ForeColor = color;
+                            break;
+                        case "two2h":
+                            two2h.ForeColor = color;
+                            break;
+                        case "two3h":
+                            two3h.ForeColor = color;
+                            break;
+                        case "two4h":
+                            two4h.ForeColor = color;
+                            break;
+                default:
+                    {
+                        five1h.ForeColor = color;
+                        four1h.ForeColor = color;
+                        four2h.ForeColor = color;
+                        three1h.ForeColor = color;
+                        three2h.ForeColor = color;
+                        three3h.ForeColor = color;
+                        two1h.ForeColor = color;
+                        two2h.ForeColor = color;
+                        two3h.ForeColor = color;
+                        two4h.ForeColor = color;
+                        break;
+                    }
+            }
+                
+        }
 
 
         private int numOfRows = 10;
@@ -275,11 +417,26 @@ namespace FleetView
         private GridButton[,] userPanel = new GridButton[10, 10];
         private GridButton[,] pcPanel = new GridButton[10, 10];
         private GridButton[,] gridMarks = new GridButton[11, 11];
+        private ShipsSunked[] sunkedShipsHoomanFleet = new ShipsSunked[10] { new ShipsSunked(5, false, "five1h"), new ShipsSunked(4, false, "four1h"), new ShipsSunked(4, false,"four2h"), new ShipsSunked(3, false,"three1h"), new ShipsSunked(3, false, "three2h"), new ShipsSunked(3, false, "three3h"), new ShipsSunked(2, false,"two1h"), new ShipsSunked(2, false, "two2h"), new ShipsSunked(2, false, "two3h"), new ShipsSunked(2, false, "two4h") };
+        private ShipsSunked[] sunkedShipsPcFleet =     new ShipsSunked[10] { new ShipsSunked(5, false, "five1pc"), new ShipsSunked(4, false, "four1pc"), new ShipsSunked(4, false, "four2pc"), new ShipsSunked(3, false, "three1pc"), new ShipsSunked(3, false, "three2pc"), new ShipsSunked(3, false, "three3pc"), new ShipsSunked(2, false, "two1pc"), new ShipsSunked(2, false, "two2pc"), new ShipsSunked(2, false, "two3pc"), new ShipsSunked(2, false, "two4pc") };
         private Fleet userFleet;
         private Fleet pcFleet;
         private Gunner gunner;
         private int[] sizeOfShip = new int[] { 5, 4, 4, 3, 3, 3, 2, 2, 2, 2 };
         private Turn whoPlays;
         private bool running = false;
+
+    }
+    internal class ShipsSunked
+    {
+        public int length;
+        public bool sunked;
+        public string nameOfLabel;
+        public ShipsSunked(int length, bool sunked,string nameOfLabel)
+        {
+            this.length = length;
+            this.sunked = sunked;
+            this.nameOfLabel = nameOfLabel;
+        }
     }
 }
